@@ -1,11 +1,11 @@
 <script lang="ts">
   import GameTile from "./GameTile.svelte";
-  export let word = ''
+  export let word;
 </script>
 
 <div class="row">
   {#each Array(5) as _, i}
-    <GameTile letter={word[i]}/>
+    <GameTile letter={word ? word[i] : undefined}/>
   {/each}
 </div>
 

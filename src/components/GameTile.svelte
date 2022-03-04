@@ -1,9 +1,9 @@
 <script lang="ts">
-  export let letter = '';
+  export let letter;
 </script>
 
 <div class="game-tile">
-  <h1>{letter[0] ? letter.toUpperCase() : ''}</h1>
+  <h1>{letter ? letter.toUpperCase() : ''}</h1>
 </div>
 
 <style>
