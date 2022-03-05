@@ -1,11 +1,12 @@
 <script lang="ts">
   import GameTile from "./GameTile.svelte";
-  export let word;
+  export let input;
+  export let colours;
 </script>
 
 <div class="row">
   {#each Array(5) as _, i}
-    <GameTile letter={word ? word[i] : undefined}/>
+    <GameTile letter={input[i]} colour={colours[i]}/>
   {/each}
 </div>
 

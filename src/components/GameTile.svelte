@@ -1,8 +1,17 @@
 <script lang="ts">
   export let letter;
+  export let colour = '';
+
+  const coloursLookup = {
+    'red': '#ff0000',
+    'green': '#00ff00',
+    'yellow': '#ffff00',
+  };
+  
+
 </script>
 
-<div class="game-tile">
+<div class="game-tile" style="{colour && `background-color: ${coloursLookup[colour]};`}">
   <h1>{letter ? letter.toUpperCase() : ''}</h1>
 </div>
 

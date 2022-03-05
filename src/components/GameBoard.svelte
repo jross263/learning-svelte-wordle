@@ -1,15 +1,13 @@
 <script lang="ts">
   import GameRow from "./GameRow.svelte";
-  export let guesses;
+  export let input;
+  export let colours;
+
+  $: console.log(input, colours);
 </script>
 
 <div class="board">
-  <GameRow word={guesses[0]} />
-  <GameRow word={guesses[1]} />
-  <GameRow word={guesses[2]} />
-  <GameRow word={guesses[3]} />
-  <GameRow word={guesses[4]} />
-  <GameRow word={guesses[5]} />
+  <GameRow {input} {colours}/>
 </div>
 
 <style>
