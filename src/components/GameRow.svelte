@@ -1,12 +1,12 @@
 <script lang="ts">
+  import type { GameGuess } from "src/GameGuess";
   import GameTile from "./GameTile.svelte";
-  export let input;
-  export let colours;
+  export let guess: GameGuess;
 </script>
 
 <div class="row">
-  {#each Array(5) as _, i}
-    <GameTile letter={input[i]} colour={colours[i]}/>
+  {#each Array(guess.maxLength) as _, i}
+    <GameTile letter={guess.guess[i]} colour={guess.colours[i]}/>
   {/each}
 </div>
 

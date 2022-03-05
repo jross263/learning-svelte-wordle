@@ -1,13 +1,13 @@
 <script lang="ts">
+  import type { GuessState } from "src/GuessState";
   import GameRow from "./GameRow.svelte";
-  export let input;
-  export let colours;
-
-  $: console.log(input, colours);
+  export let guessState: GuessState;
 </script>
 
 <div class="board">
-  <GameRow {input} {colours}/>
+  {#each guessState.guesses as guess}
+    <GameRow guess={guess} />
+  {/each}
 </div>
 
 <style>
