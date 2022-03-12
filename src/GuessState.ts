@@ -3,10 +3,10 @@ import { GameGuess } from "./GameGuess";
 export class GuessState {
   private _guesses: GameGuess[];
   
-  constructor(numberOfGuesses: number, wordLength: number) {
+  constructor() {
     this._guesses = [];
-    for (let i = 0; i < numberOfGuesses; i++) {
-      this._guesses.push(new GameGuess(wordLength));
+    for (let i = 0; i < 6; i++) {
+      this._guesses.push(new GameGuess(5));
     }
 
   }

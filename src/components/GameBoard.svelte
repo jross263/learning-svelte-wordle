@@ -15,7 +15,7 @@
     display: grid;
     grid-template-rows: repeat(6, 1fr);
     grid-gap: 5px;
-    width: 500px;
-    height: 500px;
+    width: 350px;
+    height: 420px;
   }
 </style>

@@ -12,7 +12,7 @@
 </script>
 
 <div class="game-tile" style="{colour && `background-color: ${coloursLookup[colour]};`}">
-  <h1>{letter ? letter.toUpperCase() : ''}</h1>
+  {letter ? letter.toUpperCase() : ''}
 </div>
 
 <style>
@@ -20,9 +20,12 @@
     display: flex;
     background-color: #eee;
     border: 1px solid #ccc;
-    width: 100px;
-    height: 100px;
+    width: 62px;
+    height: 62px;
     justify-content: center;
     align-items: center;
+    font-size: 2rem;
+    line-height: 2rem;
+    font-weight: bold;
   }
 </style>

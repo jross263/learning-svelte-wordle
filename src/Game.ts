@@ -2,31 +2,55 @@ import { GuessState } from './GuessState';
 
 export class Game {
   private _guessState: GuessState;
+  private _isLoss: boolean = false;
+  private _isWon: boolean = false;
   private validInput: string[];
   private controlKeys: string[];
   private currentTurn: number;
   private wordLength: number;
   private finalWord: string = 'hello';
 
-  constructor(numberOfGuesses: number, wordLength: number) {
-    this._guessState = new GuessState(numberOfGuesses, wordLength);
+  constructor() {
+    this._guessState = new GuessState();
     this.validInput = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-    this.controlKeys = ['Backspace', 'Enter'];
+    this.controlKeys = ['backspace', 'enter'];
     this.currentTurn = 0;
-    this.wordLength = wordLength;
+    this.wordLength = 5;
   }
 
-  public keyHandler(key: string): void {
+  public keyHandler(eKey: string): void {
+    const key = eKey.toLowerCase();
+    const isValidKey = this.validInput.includes(key);
+    const isControlKey = this.controlKeys.includes(key);
+
+    if(!(isValidKey || isControlKey)) return; // invalid input
+    if(this._isLoss || this._isWon) return; // game is over
+
     const currGuess = this._guessState.getGuess(this.currentTurn)
-    if(!this.validInput.includes(key) && !this.controlKeys.includes(key)) return;
-    if(key === 'Backspace') {
+    
+    if(key === 'backspace') {
       currGuess.removeLetter();
-    } else if(key === 'Enter' && currGuess.length === this.wordLength) {
+    } else if(key === 'enter' && currGuess.length === this.wordLength) {
       currGuess.colours = this.computeColours(currGuess.guess);
+      this.isGameOver();
       this.currentTurn++;
     }else if(!this.controlKeys.includes(key)) {
       currGuess.addLetter(key);
     }    
+  }
+
+  get isLoss(): boolean {
+    return this._isLoss;
+  }
+
+  get isWon(): boolean {
+    return this._isWon;
+  }
+
+  private isGameOver(): boolean {
+    this._isWon = this.finalWord === this._guessState.getGuess(this.currentTurn).guess;
+    this._isLoss = this.currentTurn === (this._guessState.guesses.length - 1) && !this._isWon;
+    return this._isWon || this._isLoss;
   }
 
   private computeColours(word: string): string[] {
