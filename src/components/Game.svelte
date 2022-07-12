@@ -1,6 +1,7 @@
 <script lang="ts">
   import GameBoard from "./GameBoard.svelte";
   import { Game } from "../Game"
+  import Keyboard from "./Keyboard.svelte";
 
   let game = new Game();
 
@@ -32,3 +33,4 @@
   <h1>You {isWon ? "Won" : "Lost"}</h1>
   <button on:click={resetGame}>Reset Game</button>
 {/if}
+<Keyboard {handleKeydown}/>

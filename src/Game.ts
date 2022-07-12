@@ -1,4 +1,5 @@
 import { GuessState } from './GuessState';
+import { words } from './words';
 
 export class Game {
   private _guessState: GuessState;
@@ -8,9 +9,9 @@ export class Game {
   private controlKeys: string[];
   private currentTurn: number;
   private wordLength: number;
-  private finalWord: string = 'hello';
-
+  private finalWord: string;
   constructor() {
+    this.finalWord = words[Math.floor(Math.random() * words.length)]
     this._guessState = new GuessState();
     this.validInput = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
     this.controlKeys = ['backspace', 'enter'];
